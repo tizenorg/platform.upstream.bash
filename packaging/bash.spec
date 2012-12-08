@@ -17,22 +17,17 @@ interpreter that is compatible with the Bourne shell (sh). Bash
 incorporates useful features from the Korn shell (ksh) and the C shell
 (csh). Most sh scripts can be run by bash without modification.
 
-%package doc
-Summary:        Documentation files for %{name}
-Group:          Development/Languages
-Requires:       %{name} = %{version}
-
-%description doc
-This package contains documentation files for %{name}.
-
-%define pkgdocdir %{_datadir}/doc/%{name}-%{version}
 
 %prep
 %setup -q
 
 %build
-autoconf
-%configure --enable-largefile --without-bash-malloc --disable-nls
+%configure --enable-largefile \
+            --without-bash-malloc \
+            --disable-nls \
+            --enable-alias \
+            --enable-readline  \
+            --enable-history
 
 # Recycles pids is neccessary. When bash's last fork's pid was X
 # and new fork's pid is also X, bash has to wait for this same pid.
@@ -42,15 +37,6 @@ make "CPPFLAGS=-D_GNU_SOURCE -DDEFAULT_PATH_VALUE='\"/usr/local/bin:/usr/bin\"' 
 make check
 
 %install
-
-if [ -e autoconf ]; then
-  # Yuck. We're using autoconf 2.1x.
-  export PATH=.:$PATH
-fi
-
-# Fix bug #83776
-perl -pi -e 's,bashref\.info,bash.info,' doc/bashref.info
-
 %make_install
 
 mkdir -p %{buildroot}/etc
