@@ -82,9 +82,8 @@ ln -sf bash ./usr/bin/sh
 rm -f .%{_infodir}/dir
 popd
 mkdir -p %{buildroot}%{_sysconfdir}/skel
-#install -c -m644 %{SOURCE1} %{buildroot}%{_sysconfdir}/skel/.bashrc
-#install -c -m644 %{SOURCE2} %{buildroot}%{_sysconfdir}/skel/.bash_profile
-#install -c -m644 %{SOURCE3} %{buildroot}%{_sysconfdir}/skel/.bash_logout
+install -c -m644 %{SOURCE1} %{buildroot}%{_sysconfdir}/skel/.bashrc
+install -c -m644 %{SOURCE2} %{buildroot}%{_sysconfdir}/skel/.bash_profile
 LONG_BIT=$(getconf LONG_BIT)
 mv %{buildroot}%{_bindir}/bashbug \
    %{buildroot}%{_bindir}/bashbug-"${LONG_BIT}"
@@ -153,4 +152,4 @@ fi
 %files
 %{_bindir}/sh
 %{_bindir}/bash
-
+%{_sysconfdir}/skel
