@@ -4,7 +4,7 @@ Release:        1
 License:        GPL-3.0+
 Summary:        The GNU Bourne Again shell
 Url:            http://www.gnu.org/software/bash
-Group:          System/Shells
+Group:          System/Base
 Source0:        ftp://ftp.gnu.org/gnu/bash/%{name}-%{version}.tar.gz
 Source1:        dot.bashrc
 Source2:        dot.profile
@@ -152,6 +152,7 @@ fi
 
 
 %files
+%license COPYING
 %{_bindir}/sh
 %{_bindir}/bash
 %{_sysconfdir}/skel
