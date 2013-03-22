@@ -1,3 +1,6 @@
+* Fri Mar 22 2013 Anas Nashif <anas.nashif@intel.com> submit/trunk/20130318.195144@ffe7e73
+- Fixed package groups
+
 * Mon Mar 18 2013 Anas Nashif <anas.nashif@intel.com> upstream/4.2@c839627
 - Fixed package group
 
