@@ -1,3 +1,6 @@
+* Wed Jun 26 2013 Anas Nashif <anas.nashif@intel.com> accepted/tizen/20130520.103247@e9ce992
+- own /etc/bash_completion.d
+
 * Fri Mar 22 2013 Anas Nashif <anas.nashif@intel.com> submit/trunk/20130318.195144@ffe7e73
 - Fixed package groups
 
