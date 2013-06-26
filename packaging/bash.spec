@@ -41,7 +41,7 @@ make check
 %install
 %make_install
 
-mkdir -p %{buildroot}/etc
+mkdir -p %{buildroot}/etc/bash_completion.d
 
 #mkdir -p %{buildroot}/%{_bindir}
 #mv %{buildroot}/bin/* %{buildroot}/%{_bindir}/
@@ -156,3 +156,5 @@ fi
 %{_bindir}/sh
 %{_bindir}/bash
 %{_sysconfdir}/skel
+%dir %{_sysconfdir}/bash_completion.d
+
