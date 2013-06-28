@@ -8,6 +8,7 @@ Group:          Base/Tools
 Source0:        ftp://ftp.gnu.org/gnu/bash/%{name}-%{version}.tar.gz
 Source1:        dot.bashrc
 Source2:        dot.profile
+Source1001: 	bash.manifest
 BuildRequires:  autoconf
 BuildRequires:  bison
 Provides:	/bin/bash
@@ -22,6 +23,7 @@ incorporates useful features from the Korn shell (ksh) and the C shell
 
 %prep
 %setup -q
+cp %{SOURCE1001} .
 
 %build
 %configure --enable-largefile \
@@ -152,6 +154,7 @@ fi
 
 
 %files
+%manifest %{name}.manifest
 %license COPYING
 %{_bindir}/sh
 %{_bindir}/bash
