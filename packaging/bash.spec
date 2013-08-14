@@ -45,9 +45,6 @@ make check
 
 mkdir -p %{buildroot}/etc/bash_completion.d
 
-#mkdir -p %{buildroot}/%{_bindir}
-#mv %{buildroot}/bin/* %{buildroot}/%{_bindir}/
-
 # make manpages for bash builtins as per suggestion in DOC/README
 pushd doc
 sed -e '
@@ -60,12 +57,14 @@ b
 }
 d
 ' builtins.1 > man.pages
+# '
 for i in echo pwd test kill; do
   perl -pi -e "s,$i,,g" man.pages
   perl -pi -e "s,  , ,g" man.pages
 done
 
 install -c -m 644 builtins.1 %{buildroot}%{_mandir}/man1/builtins.1
+install -c -m 644 bash.1 %{buildroot}%{_mandir}/man1/bash.1
 
 for i in `cat man.pages` ; do
   echo .so man1/builtins.1 > %{buildroot}%{_mandir}/man1/$i.1
