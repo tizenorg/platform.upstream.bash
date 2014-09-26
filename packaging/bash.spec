@@ -1,16 +1,17 @@
 Name:           bash
-Version:        4.2
+Version:        4.3.25
 Release:        1
 License:        GPL-3.0+
 Summary:        The GNU Bourne Again shell
 Url:            http://www.gnu.org/software/bash
-Group:          Base/Tools
-Source0:        ftp://ftp.gnu.org/gnu/bash/%{name}-%{version}.tar.gz
+Group:          Base/Utilities
+Source0:        %{name}-%{version}.tar.gz
 Source1:        dot.bashrc
 Source2:        dot.profile
 Source1001: 	bash.manifest
 BuildRequires:  autoconf
 BuildRequires:  bison
+BuildRequires:  fdupes
 Provides:	/bin/bash
 Provides:	/bin/sh
 
@@ -91,23 +92,14 @@ LONG_BIT=$(getconf LONG_BIT)
 mv %{buildroot}%{_bindir}/bashbug \
    %{buildroot}%{_bindir}/bashbug-"${LONG_BIT}"
 
-# Fix missing sh-bangs in example scripts (bug #225609).
-for script in \
-  examples/scripts/krand.bash \
-  examples/scripts/bcsh.sh \
-  examples/scripts/precedence \
-  examples/scripts/shprompt
-do
-  cp "$script" "$script"-orig
-  echo '#!/bin/bash' > "$script"
-  cat "$script"-orig >> "$script"
-  rm -f "$script"-orig
-done
-
 rm -rf %{buildroot}%{_bindir}/bashbug-*
 chmod a-x doc/*.sh
 
+# remove duplicate manpages
+%fdupes -s %{buildroot}/%{_mandir}
+
 %docs_package
+%doc %{_datadir}/doc/%{name}/*
 
 %post -p <lua>
 bashfound = false;
@@ -157,6 +149,7 @@ fi
 %license COPYING
 %{_bindir}/sh
 %{_bindir}/bash
-%{_sysconfdir}/skel
+%config %attr(644,root,root) %{_sysconfdir}/skel/.bashrc
+%config %attr(644,root,root) %{_sysconfdir}/skel/.bash_profile
 %dir %{_sysconfdir}/bash_completion.d
 
