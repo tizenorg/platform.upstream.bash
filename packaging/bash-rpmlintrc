@@ -1,0 +1,1 @@
+addFilter("hidden-file-or-dir .*/usr/share/man/man1/..1.gz")
