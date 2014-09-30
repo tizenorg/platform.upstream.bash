@@ -1,5 +1,5 @@
 Name:           bash
-Version:        4.3.25
+Version:        4.3.27
 Release:        1
 License:        GPL-3.0+
 Summary:        The GNU Bourne Again shell
