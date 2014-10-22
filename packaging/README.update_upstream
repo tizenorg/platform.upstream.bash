@@ -1,0 +1,38 @@
+Procedure to update from upstream project
+=========================================
+
+1. Init repository
+------------------
+
+# git clone review.tizen.org:platform/upstream/bash
+# cd bash
+
+2. Add upstream remote
+----------------------
+
+# git remote add gnu git://git.savannah.gnu.org/bash.git
+# git fetch gnu
+
+3. Update upstream branch
+-------------------------
+
+# git checkout upstream
+# git rebase gnu/master
+# git tag upstream/x.y.z ### REPLACE BY APPROPRIATE VERSION
+# git push --tags origin HEAD:upstream
+
+4. Update tizen branch
+----------------------
+
+# git checkout tizen
+# git rebase upstream
+# git push origin HEAD:tizen
+
+5. Bump version
+---------------
+
+# vi packaging/*.spec
+# ... update version in spec file ...
+# git commit -sam "Bump to version x.y.z" ### REPLACE BY APPROPRIATE VERSION !
+# git push origin HEAD:refs/for/tizen     ### this time, with a review !
+
