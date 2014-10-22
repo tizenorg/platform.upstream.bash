@@ -1,3 +1,6 @@
+* Wed Oct 22 2014 John L. Whiteman <john.l.whiteman@intel.com> 66cb8ee
+- Bump to 4.3.30 - Fix CVE-2014-7186
+
 * Wed Aug 14 2013 Anas Nashif <anas.nashif@intel.com> accepted/tizen/20130710.221102@ed960a9
 - install bash man page
 - resetting manifest requested domain to floor
