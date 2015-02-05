@@ -6,8 +6,6 @@ Summary:        The GNU Bourne Again shell
 Url:            http://www.gnu.org/software/bash
 Group:          Base/Utilities
 Source0:        %{name}-%{version}.tar.gz
-Source1:        dot.bashrc
-Source2:        dot.profile
 Source1001: 	bash.manifest
 BuildRequires:  autoconf
 BuildRequires:  bison
@@ -85,9 +83,6 @@ pushd %{buildroot}
 ln -sf bash ./usr/bin/sh
 rm -f .%{_infodir}/dir
 popd
-mkdir -p %{buildroot}%{_sysconfdir}/skel
-install -c -m644 %{SOURCE1} %{buildroot}%{_sysconfdir}/skel/.bashrc
-install -c -m644 %{SOURCE2} %{buildroot}%{_sysconfdir}/skel/.bash_profile
 LONG_BIT=$(getconf LONG_BIT)
 mv %{buildroot}%{_bindir}/bashbug \
    %{buildroot}%{_bindir}/bashbug-"${LONG_BIT}"
@@ -149,7 +144,5 @@ fi
 %license COPYING
 %{_bindir}/sh
 %{_bindir}/bash
-%config %attr(644,root,root) %{_sysconfdir}/skel/.bashrc
-%config %attr(644,root,root) %{_sysconfdir}/skel/.bash_profile
 %dir %{_sysconfdir}/bash_completion.d
 
